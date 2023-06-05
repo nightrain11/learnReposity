@@ -40,5 +40,8 @@ docker inspect
 #使用-m(--memory=)可以限制容器使用的最大内存
 docker run -it -m 300M --memory-swap -1 --name con1 u-stress /bin/bash
 
+# stress 命令会创建一个进程并通过 malloc 函数分配内存
+stress --vm 1 --vm-bytes 500M
+
 #inspect docker
 docker stats dockerId
