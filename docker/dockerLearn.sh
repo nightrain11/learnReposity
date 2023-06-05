@@ -10,6 +10,7 @@ flush privileges;
 6.sudo docker network ls  //find all network
 7.sudo docker network inspect bridge //find docker ip:172.17.0.4
 8.mysql -h 172.17.0.4 -u root -p
+
 #docker link to mysql docker
 //first method(not comment,for when docker restart,ip will change)
 1.sudo docker network inspect bridge //find docker ip
