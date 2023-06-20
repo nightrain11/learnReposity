@@ -46,3 +46,8 @@ sudo cat filter_title.txt | awk -F'"' '{print $2}' | xargs -t -i sudo sed -i '/"
 ```shell
 sudo chown -R chuangwang:chuangwang /mnt/nfs/dev-aigc-20/data1/chuangwang
 ```
+
+- calcutate the folder size and sort
+```shell
+du -sh *|sort -n
+```
