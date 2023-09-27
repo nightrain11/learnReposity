@@ -65,3 +65,8 @@ sudo docker run --name redis \
     redis-server /etc/redis/redis.conf --appendonly yes #redis save data to local
 #reload redis.conf
 redis-cli config rewrite 
+
+#登录redis
+redis-cli -h 150.158.169.158 -p 6379
+#redis learn
+#https://blog.csdn.net/u014723137/article/details/125658176
