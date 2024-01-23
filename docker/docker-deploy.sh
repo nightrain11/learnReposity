@@ -14,7 +14,7 @@ flush privileges;
 #docker link to mysql docker
 //first method(not comment,for when docker restart,ip will change)
 1.sudo docker network inspect bridge //find docker ip
-2.mycli -h 172.17.0.4 -uroot -p 123456 //enter into 
+2.mycli -h 172.17.0.4 -uroot -p 123456 //enter into
 //second method(use docker name to link docker)
 1.docker network create my_net
 2.docker network ls //check is create success
@@ -24,13 +24,13 @@ flush privileges;
 6.mycli -h mysql156 -uroot -p 123456
 
 #login to server mysql
-mysql -h 150.158.169.158 -P 23306 -uroot -p
+mysql -h150.158.169.158 -P23306 -uroot -p123456
 
 #deploy minio
 
 1. docker pull minio/minio
-2. sudo docker run -p 9000:9000 -p 9001:9001 \ 
-    --name psy_minio -e "MINIO_ACCESS_KEY=minioButool"  
+2. sudo docker run -p 9000:9000 -p 9001:9001 \
+    --name psy_minio -e "MINIO_ACCESS_KEY=minioButool"
     -e "MINIO_SECRET_KEY=minioButool" \
     -e "MINIO_ROOT_USER=adminMinio" \
     -e "MINIO_ROOT_PASSWORD=adminMinio"  \
@@ -64,7 +64,7 @@ sudo docker run --name redis \
     -d redis:latest \
     redis-server /etc/redis/redis.conf --appendonly yes #redis save data to local
 #reload redis.conf
-redis-cli config rewrite 
+redis-cli config rewrite
 
 #登录redis
 redis-cli -h 150.158.169.158 -p 6379

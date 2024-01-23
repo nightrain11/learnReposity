@@ -47,7 +47,7 @@ extract title and find in json
 cat clean_titles.txt |awk '{print $2}' | xargs -i grep '"title": *"{}"' *.json
 ```
 
-#delete the title in txt, 
+#delete the title in txt,
 
 ```shell
 sudo cat filter_title.txt | awk -F'"' '{print $2}' | xargs -t -i sudo sed -i '/"title": *"{}"/d' ./text.txt
@@ -78,7 +78,7 @@ for name in `ls cbook_pdf/*.pdf`;do pdftotext name ./cbook_text/${name}.txt;done
 ```
 
 ```shell
-Ctrl+a 可以使光标移到最前面 Ctrl+e 可以使光标移到最后面 
+Ctrl+a 可以使光标移到最前面 Ctrl+e 可以使光标移到最后面
 ```
 
 - 以“为分割符号分割字符串，并取第二个字段。
@@ -94,4 +94,14 @@ git config --global core.editor vi
 - 提交代码
 ```shell
 git push origin HEAD:refs/for/master
+```
+
+-查看端口号的占用情况，占用的命令以及PID
+```shell
+lsof -i:9264
+```
+
+-增加host时不使用表锁
+```shell
+ALTER TABLE templated_generation_test ADD COLUMN host VARCHAR(255), ALGORITHM=INPLACE, LOCK=NONE;
 ```
