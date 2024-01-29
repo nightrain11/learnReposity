@@ -70,3 +70,36 @@ redis-cli config rewrite
 redis-cli -h 150.158.169.158 -p 6379
 #redis learn
 #https://blog.csdn.net/u014723137/article/details/125658176
+
+
+#redis 部署
+#1.低版本部署
+sudo docker run -itd --name=myredis11 -p 8289:6379  -v ~/redis:/data -d redis:3.0.6 redis-server
+#2.高版本部署
+wget http://download.redis.io/redis-stable/redis.conf
+chmod 777 redis.conf
+vi /docker-data/redis/redis.conf
+#redis.conf
+bind 127.0.0.1 # 这行要注释掉，解除本地连接限制
+protected-mode no # 默认yes，如果设置为yes，则只允许在本机的回环连接，其他机器无法连接。
+daemonize no # 默认no 为不守护进程模式，docker部署不需要改为yes，docker run -d本身就是后台启动，不然会冲突
+requirepass 123456 # 设置密码
+appendonly yes # 持久化
+sudo docker run -itd --name=myredis4 -p 8288:6379  -v ~/redis/redis.conf:/etc/redis/redis.conf -v ~/redis:/data -d redis redis-server /etc/redis/redis.conf --appendonly yes
+#
+#redis迁移(重点，redis版本必须保持一致，否则不会生效)
+#1.导出rdb文件
+redis-cli --rdb /path/to/dump.rdb
+#2.将rdb文件放在redis的/data文件夹下
+docker cp /path/to/dump.rdb redis:/data/dump.rdb
+#3.重启docker
+docker exec -it redis redis-cli shutdown
+docker start redis
+
+#部署后状态检查
+#1.链接容器并执行命令
+sudo docker exec -it bcf6f8e71a redis-cli ping
+#2.检查容器日志
+docker logs bcf6f8e71a
+#3.直接命令行检查
+redis-cli -h <ip> -p <port> ping
