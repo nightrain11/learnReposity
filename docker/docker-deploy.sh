@@ -103,3 +103,10 @@ sudo docker exec -it bcf6f8e71a redis-cli ping
 docker logs bcf6f8e71a
 #3.直接命令行检查
 redis-cli -h <ip> -p <port> ping
+
+#链接容器并执行命令
+sudo docker exec -it 9a80e455b0bc bash -c ls -a
+#链接上容器，并在命令行查看实时日志
+docker attach 9a80e455b0bc
+
+
